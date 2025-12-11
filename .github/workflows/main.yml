@@ -1,0 +1,87 @@
+name: main
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  generate-assets:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare folder
+        run: |
+          mkdir -p assets/generated
+          mkdir -p assets/cached
+
+      - name: Generate Snake SVG
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: assets/generated/snake.svg?palette=tokyonight
+
+      - name: Caching Assets (Reduce Request)
+        run: |
+          declare -A assets=(
+            ["ic_yt"]="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white"
+            ["ic_mail"]="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white"
+            ["ic_ko-fi"]="https://img.shields.io/badge/Ko--fi-F16061?style=for-the-badge&logo=ko-fi&logoColor=white"
+            # ["ic_buy-me-a-coffee"]="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black"
+            # ["ic_paypal"]="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white"
+            ["tech-stack"]="https://skillicons.dev/icons?i=html,css,js,nodejs,react,nextjs,astro,mongodb,mysql,sqlite,firebase,git,github,bash,gcp,figma,ae,ps&theme=dark&perline=4"
+            ["stats"]="https://github-readme-stats.vercel.app/api?username=${{ github.repository_owner }}&show_icons=true&theme=tokyonight&hide_border=true"
+            ["top-langs"]="https://github-readme-stats.vercel.app/api/top-langs/?username=${{ github.repository_owner }}&langs_count=20&exclude_repo=0,${{ github.repository_owner }}&layout=compact&theme=tokyonight&hide_border=true"
+            ["streak"]="https://streak-stats.demolab.com?user=${{ github.repository_owner }}&theme=tokyonight&hide_border=true"
+            ["trophy"]="https://github-profile-trophy.vercel.app/?username=${{ github.repository_owner }}&theme=tokyonight&no-frame=true&margin-w=8"
+            ["typing"]="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=2000&pause=1000&color=61CF5A&center=true&vCenter=true&multiline=true&width=600&height=100&lines=Thanks+for+visiting!;Goodbye!;Have+a+nice+day!"
+          )
+          
+          for asset in "${!assets[@]}"; do
+            tmp="assets/cached/${asset}.tmp.svg"
+            final="assets/cached/${asset}.svg"
+            url="${assets[$asset]}"
+            
+            echo "Generating ${asset}..."
+            if curl -s --fail "$url" -o "$tmp"; then
+              mv "$tmp" "$final"
+              echo "${asset} downloaded successfully"
+            else
+              rm -f "$tmp"
+              echo "Failed to download ${asset}"
+            fi
+          done
+
+      - name: Commit & Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/generated/*
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: update assets [skip ci]" && git push)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cleanup old workflow runs
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'main.yml',
+              per_page: 100
+            });
+            const old = runs.data.workflow_runs.slice(2);
+            for (const run of old) {
+              await github.rest.actions.deleteWorkflowRun({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                run_id: run.id
+              });
+            }
+            
