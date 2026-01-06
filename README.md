@@ -79,8 +79,9 @@ Coffee. Code. Sleep. Repeat.
   <img src="./assets/generated/snake.svg" alt="GitHub contribution snake animation"/>
 </p>
 
-### Achievements
+### 
 <p align="center">
+  Achievements
   <img src="./assets/cached/trophy.svg" alt="GitHub Trophies"/>
 </p>
 
