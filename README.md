@@ -59,29 +59,23 @@ Coffee. Code. Sleep. Repeat.
 
 ## 📊 GitHub Analytics
 
-### Repository Statistics
 <p align="center">
   <img src="./assets/cached/stats.svg" alt="GitHub Stats"/>
 </p>
 
-### Language Distribution
 <p align="center">
   <img src="./assets/cached/top-langs.svg" alt="Top Languages"/>
 </p>
 
-### Contribution Streak
 <p align="center">
   <img src="./assets/cached/streak.svg" alt="GitHub Streak"/>
 </p>
 
-### Contribution Activity
 <p align="center">
   <img src="./assets/generated/snake.svg" alt="GitHub contribution snake animation"/>
 </p>
 
-### 
 <p align="center">
-  Achievements
   <img src="./assets/cached/trophy.svg" alt="GitHub Trophies"/>
 </p>
 
