@@ -6,36 +6,43 @@
 
 # Hi, I'm LunoShiro (@lunoshiro) 👋
 
-I'm a beginner developer and a student who enjoys learning new things, breaking stuff, fixing it again, and slowly getting better at coding.
-I build things out of curiosity, interest, and the fun of seeing ideas turn into something real.
+<details>
+<summary><strong>About my name...</strong></summary>
 
 ---
 
-## 📘 What I'm Learning
+LunoShiro is a blend of Luno and Shiro. Luno is a play on the Latin word Luna, meaning moon, and Shiro (白) is the Japanese word for white. I chose this name because it reminds me of white moonlight: calm, simple, and quiet. It is my way of keeping things peaceful and balanced in the digital world.
+
+---
+
+</details>
+
+I'm a beginner developer and a student who enjoys learning new things, breaking stuff, fixing it again, and slowly getting better at coding.
+I build things out of curiosity, interest, and the fun of seeing ideas turn into something real.
+
+### What I'm Learning
 - Shell
 - HTML & CSS
 - JavaScript
 - Node.js
 - Python
 
-## 🌿 What I Enjoy
+### What I Enjoy
 - Exploring open-source
 - Reading manga
 - Watching anime
 - Playing games
 - Sleeping
 
-## 🎯 Goals
+### Goals
 - Become a fullstack developer
 - Contribute more to open source
 - Build things that are useful or simply fun
 
-## ☕ Motto
+### Motto
 Coffee. Code. Sleep. Repeat.
 
----
-
-## 📡 Connect with Me
+### Connect with Me
 <p align="center">
   <a href="https://youtube.com/@lunoshiro" rel="nofollow noopener noreferrer noindex noimageindex nosnippet noarchive">
     <img src="./assets/cached/ic_yt.svg" alt="YouTube"/>
@@ -50,14 +57,14 @@ Coffee. Code. Sleep. Repeat.
 <details>
 <summary><strong>More...</strong></summary>
 
-## 🛠 Tech Stack
+### Tech Stack
 <p align="center">
   <img src="./assets/cached/tech-stack.svg" alt="Tech Stack Icons"/>
 </p>
 
 ---
 
-## 📊 GitHub Analytics
+### GitHub Analytics
 
 <p align="center">
   <img src="./assets/cached/stats.svg" alt="GitHub Stats"/>
@@ -81,7 +88,7 @@ Coffee. Code. Sleep. Repeat.
 
 ---
 
-## 💰 Support Me
+### Support Me
 <p align="center">
   <a href="https://ko-fi.com/ringga" rel="nofollow noopener noreferrer noindex noimageindex nosnippet noarchive">
     <img src="./assets/cached/ic_ko-fi.svg"/>
